@@ -1,0 +1,7 @@
+.snackbars {
+    position: fixed;
+    bottom: 4%;
+    left: 4%;
+    display: flex;
+    flex-direction: column;
+}

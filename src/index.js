@@ -10,7 +10,6 @@ import theme from './theme';
 import { ThemeProvider } from '@mui/material';
 
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <Provider store={store}>

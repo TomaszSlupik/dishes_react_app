@@ -1,26 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Snackbar, SnackbarContent  } from '@mui/material'
-import './Snackbars.css'
 
-const bars = [
-    {message: 'first', color: 'red'}, 
-    {message: 'second', color: 'green'},
-]
+
+// const bars = [
+//     {message: 'first', color: 'red'}, 
+//     {message: 'second', color: 'green'},
+// ]
 
 export const Snackbars = (props) => {
+ 
   return (
     <div>
-    {bars.map((el, index) => (
+    {props._bars.map((el, index) => (
        
         <Snackbar
         style={{position: 'fixed', bottom: (30 + 70*index)}}
-        key={el.message}
+        key={el.key}
         open={true}
         >
          <SnackbarContent 
          style={{backgroundColor: el.color}}
-         message={el.message}
+         message={el.text}
          />   
         </Snackbar>
        
@@ -29,7 +30,9 @@ export const Snackbars = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+    _bars: state.snackbars.bars
+})
 
 const mapDispatchToProps = {}
 

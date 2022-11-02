@@ -6,7 +6,7 @@ import "./ProgressFullScren.css"
 export const ProgressFullScren = (props) => {
   
   return (
-    props._isOpen == 0 ?
+    props._isOpen != 0 ?
     <div className='circularProgressbox'>
         <CircularProgress 
         size={100}

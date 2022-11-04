@@ -10,11 +10,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 const styles = {
   toolbar: { justifyContent: 'space-between'},
   logo: {position: 'absolute', left: '50%',  top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'row'},
-  logoText: {fontSize: '2rem', padding: '0.4em 0.4em'},
+  logoText: {fontSize: '1.25rem', padding: '0.4em 0.4em'},
   photo: {width: '40px', height: '40px'}
 }
 
-export default function MenuAppBar() {
+export default function MenuAppBar(props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -26,6 +26,7 @@ export default function MenuAppBar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            
           >
             <MenuIcon />
           </IconButton>

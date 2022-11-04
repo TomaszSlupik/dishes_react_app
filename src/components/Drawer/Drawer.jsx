@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { SwipeableDrawer, List, ListItemText, ListItemButton } from '@mui/material'
-import { useState } from 'react'
 import { openDrawerAction, closeDrawerAction } from '../../state/drawer'
 
 
@@ -21,19 +20,20 @@ const links = [
 
 export const Drawer = (props) => {
 
-    const [open, setOpen] = useState(true)
+   
 
   return (
     <div>
         <SwipeableDrawer
-            open={open}
-            onClose={()=> setOpen(false)}
-            onOpen={()=> setOpen(true)}
+            open={props._isOpen}
+            onClose={props._close}
+            onOpen={props._open}
           >
             <List>
                 {links.map(el=> (
                   <ListItemButton>
                   <ListItemText 
+                  onClick={props._close}
                   key={el.key}
                   primary={el.title}/>
                   </ListItemButton>
@@ -47,11 +47,14 @@ export const Drawer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  _isOpen: state.drawer.isOpen
+})
 
-const mapDispatchToProps = {
-  
-}
+const mapDispatchToProps = (dispatch) =>( {
+    _open: () => dispatch(openDrawerAction()),
+    _close: () => dispatch(closeDrawerAction())
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Drawer)
 

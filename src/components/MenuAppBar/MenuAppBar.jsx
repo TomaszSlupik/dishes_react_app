@@ -6,6 +6,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { openDrawerAction} from '../../state/drawer'
+import { connect } from 'react-redux'
 
 const styles = {
   toolbar: { justifyContent: 'space-between'},
@@ -14,7 +16,7 @@ const styles = {
   photo: {width: '40px', height: '40px'}
 }
 
-export default function MenuAppBar(props) {
+export const MenuAppBar = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -26,6 +28,7 @@ export default function MenuAppBar(props) {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={props._drawerOpen}
             
           >
             <MenuIcon />
@@ -34,7 +37,7 @@ export default function MenuAppBar(props) {
             News
           </Typography>
           <div style={styles.logo}>
-          <img src={process.env.PUBLIC_URL + '/img/chef.png'} style={styles.photo}/>
+          <img src={process.env.PUBLIC_URL + '/img/chef.png'} style={styles.photo} alt="logo"/>
           <p style={styles.logoText}>Cheff Slupik App</p>
           </div>
           <Button color="inherit">Login</Button>
@@ -43,3 +46,12 @@ export default function MenuAppBar(props) {
     </Box>
   );
 }
+
+const mapStateToProps = (state) => ({})
+
+const mapDispatchToProps = (dispatch) =>( {
+    _drawerOpen: () => dispatch(openDrawerAction())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuAppBar)
+

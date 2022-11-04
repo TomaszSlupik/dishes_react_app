@@ -2,25 +2,27 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { SwipeableDrawer, List, ListItemText, ListItemButton } from '@mui/material'
 import { openDrawerAction, closeDrawerAction } from '../../state/drawer'
+import {withRouter} from 'react-router-dom' 
 
 
 const links = [
   {
-    title: 'Dodaj przepis'
+    title: 'Dodaj przepis',
+    route: '/add-recipe'
   }, 
   {
-    title:'Twoje przepisy'
+    title:'Twoje przepisy',
+    route: '/your-recipes'
   }, 
   {
-    title: 'Przepisy'
+    title: 'Przepisy',
+    route: '/recipes'
   }
 ]
 
 
 
 export const Drawer = (props) => {
-
-   
 
   return (
     <div>
@@ -33,7 +35,10 @@ export const Drawer = (props) => {
                 {links.map(el=> (
                   <ListItemButton>
                   <ListItemText 
-                  onClick={props._close}
+                  onClick={()=>{
+                    props._close()
+                    props.history.push(el.route)
+                  }}
                   key={el.key}
                   primary={el.title}/>
                   </ListItemButton>
@@ -56,5 +61,5 @@ const mapDispatchToProps = (dispatch) =>( {
     _close: () => dispatch(closeDrawerAction())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Drawer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Drawer))
 

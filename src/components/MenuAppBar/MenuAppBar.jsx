@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 const styles = {
   toolbar: { justifyContent: 'space-between'},
   logo: {position: 'absolute', left: '50%',  top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'row'},
-  logoText: {fontSize: '1.25rem', padding: '0.4em 0.4em'},
+  logoText: {fontSize: '1.25rem', padding: '0.4em 0.4em', fontWeight: 'bold', fontFamily: 'Dancing Script'},
   photo: {width: '40px', height: '40px'}
 }
 
@@ -38,7 +38,7 @@ export const MenuAppBar = (props) => {
           </Typography>
           <div style={styles.logo}>
           <img src={process.env.PUBLIC_URL + '/img/chef.png'} style={styles.photo} alt="logo"/>
-          <p style={styles.logoText}>Cheff Slupik App</p>
+          <p style={styles.logoText}>CheffSlupik</p>
           </div>
           <Button color="inherit">Login</Button>
         </Toolbar>

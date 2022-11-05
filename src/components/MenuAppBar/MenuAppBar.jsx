@@ -8,10 +8,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { openDrawerAction} from '../../state/drawer'
 import { connect } from 'react-redux'
+import {withRouter} from 'react-router-dom' 
+import SelectChoice from '../SelectChoice/SelectChoice';
 
 const styles = {
   toolbar: { justifyContent: 'space-between'},
-  logo: {position: 'absolute', left: '50%',  top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'row'},
+  logo: {position: 'absolute', left: '50%',  top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'row', cursor: 'pointer'},
   logoText: {fontSize: '1.25rem', padding: '0.4em 0.4em', fontWeight: 'bold', fontFamily: 'Dancing Script'},
   photo: {width: '40px', height: '40px'}
 }
@@ -36,11 +38,16 @@ export const MenuAppBar = (props) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             News
           </Typography>
-          <div style={styles.logo}>
-          <img src={process.env.PUBLIC_URL + '/img/chef.png'} style={styles.photo} alt="logo"/>
-          <p style={styles.logoText}>CheffSlupik</p>
+          <div style={styles.logo}
+          onClick={() => props.history.push('/')}
+          >
+          <img src={process.env.PUBLIC_URL + '/img/chef.png'} style={styles.photo} alt="logo" 
+          />
+          <p 
+          style={styles.logoText}
+          >CheffSlupik</p>
           </div>
-          <Button color="inherit">Login</Button>
+          <SelectChoice />
         </Toolbar>
       </AppBar>
     </Box>
@@ -53,5 +60,5 @@ const mapDispatchToProps = (dispatch) =>( {
     _drawerOpen: () => dispatch(openDrawerAction())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuAppBar)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MenuAppBar))
 

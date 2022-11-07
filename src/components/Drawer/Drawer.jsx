@@ -35,11 +35,11 @@ export const Drawer = (props) => {
                 {links.map(el=> (
                   <ListItemButton>
                   <ListItemText 
+                  key={el.route}
                   onClick={()=>{
                     props._close()
                     props.history.push(el.route)
                   }}
-                  key={el.key}
                   primary={el.title}/>
                   </ListItemButton>
                 ))}

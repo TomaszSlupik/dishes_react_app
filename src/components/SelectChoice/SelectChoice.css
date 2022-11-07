@@ -1,0 +1,78 @@
+.gearBox {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 120px;
+    height: 0px;
+    z-index: -1;
+}
+
+
+
+.gearBoxactive {
+    height: 240px;
+    animation: gearactive 2s forwards;
+
+}
+
+@keyframes gearactive {
+    from {
+        height: 0px;
+    }
+
+    to {
+        height: 240px;
+    }
+}
+
+.closebox {
+    animation: gearnonactive 2s forwards;
+}
+
+@keyframes gearnonactive {
+    from {
+        height: 240px;
+    }
+
+    to {
+        height: 0px;
+    }
+}
+
+.xmarkitem {
+    position: relative;
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 1;
+}
+
+.gearItem {
+    z-index: 1;
+}
+
+
+.box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.changepassword,
+.Logout {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.Logout {
+    margin-top: 0.2em;
+}
+

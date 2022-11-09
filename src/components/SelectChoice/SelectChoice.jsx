@@ -3,23 +3,31 @@ import './SelectChoice.css'
 import {withRouter} from 'react-router-dom' 
 
 const gearShow = () => { 
-  let gearBox = document.querySelector('.gearBox')
-  let xmarkitem = document.querySelector('.xmarkitem')
-  let gearItem = document.querySelector('.gearItem')
+  const gearBox = document.querySelector('.gearBox')
+  const xmarkitem = document.querySelector('.xmarkitem')
+  const gearItem = document.querySelector('.gearItem')
+  const changepassword = document.querySelector('.changepassword')
+  const Logout = document.querySelector('.Logout')
   gearBox.classList.add ('gearBoxactive')
   gearBox.classList.remove ('closebox')
   xmarkitem.style.display = 'block'
   gearItem.style.display = 'none'
+  changepassword.classList.add('changepasswordflex')
+  Logout.classList.add('Logoutflex')
  }
 
 const gearClose = () => {
-  let gearBox = document.querySelector('.gearBox')
-  let xmarkitem = document.querySelector('.xmarkitem')
-  let gearItem = document.querySelector('.gearItem')
+  const gearBox = document.querySelector('.gearBox')
+  const xmarkitem = document.querySelector('.xmarkitem')
+  const gearItem = document.querySelector('.gearItem')
+  const Logout = document.querySelector('.Logout')
+  const changepassword = document.querySelector('.changepassword')
   gearItem.style.display = 'block'
   xmarkitem.style.display = 'none'
   gearBox.classList.add('closebox')
   gearBox.classList.remove ('gearBoxactive')
+  Logout.classList.remove('Logoutflex')
+  changepassword.classList.remove('changepasswordflex')
 }
 
 export const SelectChoice = (props) => {

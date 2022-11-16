@@ -1,14 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {TextField} from '@mui/material'
+import {InputAdornment, TextField} from '@mui/material'
 
-import styleFunctionSx from '@mui/system/styleFunctionSx'
-import zIndex from '@mui/material/styles/zIndex'
 
 const MAX_NAME_LENGTH = 45
 const MIN_NAME_LENGTH = 4
 const MIN_DESCRIPTION_LENGTH = 20
 const MAX_DESCRIPTION_LENGTH = 150
+const MAX_TIME = 240
 
 const styles = {
     div: {display: 'flex', flexDirection: 'column', alignItems: 'center'},
@@ -54,16 +53,24 @@ export const AddRecipe = (props) => {
     const [time, setTime] = React.useState('')
     const [timeError, setTimeError] = React.useState(false)
 
-    const timeValue = () => {
-
+    const timeValidate = (value) => {
+        value = Number(Number(value).toFixed(2))
+        setTime(value)
+        const isError = value < 1
+        setTimeError(isError)
+        return isError
     }
 
-    const setValidTime = string => {
-        setTime(string)
+    const setValidTime = value => {
+        setTime(value < 0 ? 0 : value > MAX_TIME ? MAX_TIME : value)
     }
 
 
-
+const [photo, setPhoto] = React.useState ('')
+const [photoError, setPhotoError] = React.useState(false)
+const photoValidate = value => {
+    
+}
 
 
 
@@ -83,18 +90,20 @@ export const AddRecipe = (props) => {
             onChange: setValidDescription, 
             error: descriptionError, 
             validate: descriptionValue, 
-            helperText: 'Zbyt krótki opis', 
+            helperText: 'Zbyt krótki opis, min. 20 znaków', 
             multiline: true
         },
         {
             label: 'Czas przygotowania', 
             value: time, 
             onChange: setValidTime, 
-            error: setTimeError, 
-            validate: timeValue, 
+            error: timeError, 
+            validate: timeValidate, 
             helperText: 'Podaj czas', 
-            multiline: false, 
-            type: 'number'
+            type: 'number', 
+            InputProps: {
+                endAdornment: <InputAdornment position='end'>min</InputAdornment>,
+            }
         }
     ]
 
@@ -120,6 +129,7 @@ export const AddRecipe = (props) => {
         onBlur={()=> el.validate(el.value)}
         multiline={el.multiline}
         type={el.type || 'text'}
+        InputProps={el.InputProps}
         />
         ))
         }

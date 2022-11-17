@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {InputAdornment, TextField} from '@mui/material'
+import Ingredients from '../Ingredients/Ingredients'
 
 
 const MAX_NAME_LENGTH = 45
@@ -69,7 +70,9 @@ export const AddRecipe = (props) => {
 const [photo, setPhoto] = React.useState ('')
 const [photoError, setPhotoError] = React.useState(false)
 const photoValidate = value => {
-    
+    const isError = !value 
+    setPhotoError(isError)
+    return isError
 }
 
 
@@ -84,6 +87,9 @@ const photoValidate = value => {
             helperText: 'Zbyt krótka nazwa, min. 4 znaki', 
             multiline: false
         }, 
+        {
+            label: 'Składniki'
+        },
         {
             label: 'Sposób przyrządzenia', 
             value: description, 
@@ -104,14 +110,29 @@ const photoValidate = value => {
             InputProps: {
                 endAdornment: <InputAdornment position='end'>min</InputAdornment>,
             }
-        }
+        },
+        {
+            label: 'Zdjęcie', 
+            value: photo, 
+            onChange: setPhoto, 
+            error: photoError, 
+            validate: photoValidate, 
+            helperText: 'Podaj url zdjęcia', 
+            placeholder: 'http://'
+           
+        },
+    
     ]
 
 
   return (
     <div
     style={styles.div}>
-        {inputs.map(el=>(
+        {inputs.map(el=> el.label === 'Składniki' ? 
+        <Ingredients 
+        key={el.label}/> 
+        : 
+        (
         <TextField 
         style={styles.input}
         variant='outlined'
@@ -130,10 +151,15 @@ const photoValidate = value => {
         multiline={el.multiline}
         type={el.type || 'text'}
         InputProps={el.InputProps}
+        placeholder={el.placeholder}
         />
+        
         ))
+        
         }
+        
     </div>
+    
   )
 }
 
